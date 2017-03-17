@@ -13,7 +13,6 @@ app.use('/users',function(req,res){
     data = JSON.parse(data);
     res.send(data);
   });
-
 });
 
-app.listen(3000);
+app.listen(4000);
