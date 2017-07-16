@@ -16,4 +16,13 @@ app.use('/users',function(req,res){
     });
 });
 
+app.use('/brendan',function(req,res){
+    console.log('Connected!');
+    console.log(req)
+    fs.readFile('./data1.json','utf-8',function(err,data) {
+        data = JSON.parse(data);
+        res.send(data);
+    });
+});
+
 app.listen(4000);
