@@ -1,0 +1,20 @@
+<button id="myButton">Click me!</button>
+<p>You clicked on the button <span id="clickCount">0</span> times</p>
+<button id="deactivate">Deactivate counting</button>
+
+
+<script>
+
+    function showMessage() {
+        alert('Counter deactivated!')
+    }
+    var clicks = 0
+    document.getElementById('myButton').addEventListener('click', () => {
+        clicks++
+        document.getElementById('clickCount').innerHTML = clicks
+    })
+    document.getElementById('deactivate').addEventListener('click', () => {
+        console.log('deactivating handler on Click me')
+        document.getElementById('myButton').removeEventListener('click',showMessage)
+    })
+</script>

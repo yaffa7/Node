@@ -1,0 +1,25 @@
+<p>
+    <span id="keys"></span>
+</p>
+<button id="myButton">Click Me!</button>
+
+
+<script>
+
+    document.getElementById('myButton').addEventListener('click', () => {
+        alert('Window Height: ' + window.outerHeight + '\nWindow width: ' + window.outerWidth)
+    })
+    // Show event type and target when the user clicks on the button
+document.getElementById("myButton").addEventListener("click", e => {
+  console.log(`Event type: ${e.type}, target: ${e.target.innerHTML}`);
+});
+
+document.addEventListener("keypress", e => {
+  console.log(`You pressed the ${String.fromCharCode(e.charCode)} key`);
+  document.getElementById('keys').innerHTML += `${String.fromCharCode(e.charCode)}`
+});
+
+window.addEventListener("load", e => {
+  console.log("The page has been loaded!");
+});
+</script>

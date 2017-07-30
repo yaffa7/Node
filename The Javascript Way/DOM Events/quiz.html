@@ -1,0 +1,42 @@
+<div id="content">
+</div>
+
+<script>
+    const questions = [
+        {
+            statement: "2+2?",
+            answer: "2+2 = 4"
+        },
+        {
+            statement: "In what year did Christopher Columbus discover America?",
+            answer: "1492"
+        },
+        {
+            statement: "What occurs twice in a lifetime, but once in every year, twice in a week but never in a day?",
+            answer: "The E letter"
+        },
+        {
+            statement: "What is the capital of Austria",
+            answer: "Vienna"
+        }
+    ]
+    var questionCount = questions.length
+
+    const createQuestionNodes = questions => {
+        questions.forEach(question => {
+            let questionNode = document.createElement('p')
+            questionNode.innerText = question.statement
+            let answerNode = document.createElement('button')
+            answerNode.id = `answer${questionCount}`
+            answerNode.innerHTML = 'Show answer!'
+            answerNode.addEventListener('click', () => {
+                document.getElementById(`answer${questionCount}`).remove
+            })
+            questionNode.appendChild(answerNode)
+            document.getElementById('content').appendChild(questionNode)
+        })
+    }
+
+    createQuestionNodes(questions)
+
+</script>

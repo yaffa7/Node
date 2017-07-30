@@ -1,0 +1,28 @@
+<h1>My favourite desserts</h1>
+
+<ul id="desserts"></ul>
+
+<button id="addButton">Add a dessert</button>
+<input type='text' id='dessertName'>
+
+<script>
+    var items = 0
+    const addItem = () => {
+        const listItem = document.createElement('li')
+        listItem.id = `item${items}`
+        listItem.innerText = document.getElementById('dessertName').value
+        document.getElementById('desserts').appendChild(listItem)
+        items++
+        document.getElementById('dessertName').value = ''
+    }
+    
+    document.getElementById('addButton').addEventListener('click', () => {
+        addItem()
+    })
+    document.addEventListener('keypress', key => {
+        let code = key.charCode
+        if (code == 13) { //Enter pressed
+            addItem()
+        }
+    })
+</script>
