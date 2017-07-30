@@ -49,11 +49,14 @@ const printWordStats = word => {
     } else {
         process.stdout.write('false')
     }
+
+    process.stdout.write('\n\n')
 }
 
 console.log("Please enter a word")
 
-process.stdin.on('data', function(data) {
-    printWordStats(data.toString().trim())
-    process.exit()
+process.argv.forEach( arg => {
+    if(process.argv.indexOf(arg) > 1) {
+        printWordStats(arg)
+    }
 })
