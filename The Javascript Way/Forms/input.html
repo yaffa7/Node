@@ -1,0 +1,95 @@
+<form>
+<label for="username">Username</label>:
+<input type="text" name="username" id="username" required>
+<span id="usernameHelp"></span>
+<br/>
+<label for="username">Password</label>:
+<input type="text" name="password" id="password" required >
+<span id="passwordhelp"></span>
+<br/>
+<label for="email">Email</label>:
+<input type="text" name="email" id="email" required >
+<span id="emailHelp"></span>
+<br/>
+<input type="checkbox" name="confirmation" id="confirmation">
+<label for="confirmation">Send me a confirmation email</label>
+<br/>
+<input type="radio" name="subscription" id="newsroom" value="newspromo">
+<label for="newsroom">Subscribe me to newsletters and promotions</label>
+<br>
+<input type="radio" name="subscription" id="news" value="news">
+<label for="news">Subscribe me only to the newsletter</label>
+<br>
+<input type="radio" name="subscription" id="no" value="no" checked>
+<label for="no">No subscriptions</label>
+<br>
+
+<label for="nationality">Nationality</label>:
+<select name="nationality" id="nationality">
+  <option value="US" selected>American</option>
+  <option value="FR">French</option>
+  <option value="ES">Spanish</option>
+  <option value="XX">Other</option>
+</select>
+</form>
+<script>
+
+
+    const formElement = document.querySelector("form");
+    console.log(`Number of fields: ${formElement.elements.length}`); // 10
+    console.log(formElement.elements[0].name);       // "username"
+    console.log(formElement.elements.password.type); // "password"
+
+    document.getElementById('nationality').addEventListener('change', e =>{
+        console.log(`Nationality code: ${e.target.value}`)
+    })
+    const usernameElement = document.getElementById('username')
+    usernameElement.value = 'Cool username'
+
+    usernameElement.addEventListener('focus', e =>{
+        document.getElementById('usernameHelp').textContent = 'Enter a unique username'
+    })
+
+    usernameElement.addEventListener('blur', e =>{
+        document.getElementById('usernameHelp').textContent = ''
+    })
+
+
+    document.getElementsByName('subscription').forEach(element =>{
+        element.addEventListener('change', e =>{
+            console.log(`Selected subscription ${e.target.value}`)
+        })
+
+    })
+    document.getElementById('confirmation').addEventListener('change', e => {
+        console.log(e.target.checked)
+    })
+
+    // Password
+
+    document.getElementById('password').addEventListener('input', e => {
+        let password = e.target.value
+        let passwordLength = 'too short'
+        let messageColor = 'red'
+        if (password.length >= 8) {
+            passwordLength = 'Adequate'
+        } else if( password.length >= 4) {
+            passwordLength = 'moderate'
+        }
+        const passwordHelpElement = document.getElementById('passwordhelp')
+        passwordHelpElement.textContent = `Length: ${passwordLength}`
+        passwordHelpElement.style.color = messageColor
+    })
+
+    // Email
+
+    document.getElementById("email").addEventListener("blur", e => {
+        // Match a string of the form xxx@yyy.zzz
+        const emailRegex = /.+@.+\..+/;
+        let validityMessage = "";
+        if (!emailRegex.test(e.target.value)) {
+            validityMessage = "Invalid address";
+        }
+        document.getElementById("emailHelp").textContent = validityMessage;
+    });
+</script>
