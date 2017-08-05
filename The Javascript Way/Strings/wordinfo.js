@@ -1,14 +1,14 @@
 const isPalindrome = word => {
     let target = word.toLowerCase()
     let startIndex = 0
-    let EndIndex = word.length - 1
+    let endIndex = word.length - 1
 
-    while (startIndex < EndIndex) {
-        if ( target[startIndex] !== target[EndIndex]) {
+    while (startIndex < endIndex) {
+        if ( target[startIndex] !== target[endIndex]) {
             return false
         }
         startIndex++
-        EndIndex--
+        endIndex--
     }
     return true
 }

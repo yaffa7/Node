@@ -1,0 +1,20 @@
+<h2>A Few Programming Languages</h2>
+<ul id="languagelist">
+
+</ul>
+
+
+
+<script>
+import 'es6-promise'
+import 'isomorphic-fetch'
+
+fetch(
+  "https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/languages.txt"
+)
+  .then(response => response.text()) // Access and return response's text content
+  .then(text => {
+    console.log(text); // Display file content in the console
+  });
+    
+</script>

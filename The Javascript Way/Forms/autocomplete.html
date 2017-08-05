@@ -1,0 +1,59 @@
+<label for="country">Enter a country name</label>:
+<input type="text" id="country">
+<div id="suggestions">
+</div>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.0/css/bulma.min.css">
+
+<script>
+// Country list
+const countryList = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Anguilla",
+  "Antarctica",
+  "Antigua-and-Barbuda",
+  "Argentina",
+  "Armenia",
+  "Aruba",
+  "Australia",
+  "Autria",
+  "Azerbaïjan"
+];
+
+console.log(countries)
+
+    const isStringInArray = (array,string) => {
+        newlist = []
+        array.forEach(word => {
+            if(string === '') {
+                return newlist
+            }
+            if(word.toLowerCase().indexOf(string) != -1) {
+                newlist.push(word)
+            }
+        })
+        return newlist
+    }
+    const clearList = () => {
+        const suggestionList = document.getElementById('suggestions')
+        while(suggestionList.firstChild) {
+            suggestionList.removeChild(suggestionList.firstChild)
+        }
+    }
+    document.getElementById('country').addEventListener('input', e => {
+        clearList()
+        const wordsWithInput = isStringInArray(countryList,e.target.value)
+        wordsWithInput.forEach(word => {
+            const suggestionElement = document.createElement('div')
+            suggestionElement.id = 'suggestion'
+            suggestionElement.textContent = word
+            document.getElementById('suggestions').appendChild(suggestionElement)
+        })
+    })
+</script>
