@@ -1,0 +1,81 @@
+<div class="container" style="top: 20px">
+  <div class="box" style="width: 500px">
+    <h1 class="title">A few of the Game of Thrones characters</h1>
+    <form>
+      <label for="house">House</label>:
+      <div class="select">
+        <select name="house" id="house" isPrimary>
+        <option value="" selected>Select a house</option>
+      </select>
+      </div>
+    </form>
+    <p>
+      <ul class="list" id="characters"></ul>
+    </p>
+  </div>
+</div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.0/css/bulma.min.css">
+<script>
+// Character list. Each house has a name and a code
+const houses = [
+  {
+    code: "ST",
+    name: "Stark"
+  },
+  {
+    code: "LA",
+    name: "Lannister"
+  },
+  {
+    code: "BA",
+    name: "Baratheon"
+  },
+  {
+    code: "TA",
+    name: "Targaryen"
+  },
+];
+
+// Return an array of characters belonging to a house
+const getCharacters = houseCode => {
+  switch (houseCode) {
+    case "ST":
+      return ["Eddard", "Catelyn", "Robb", "Sansa", "Arya", "Jon Snow"];
+    case "LA":
+      return ["Tywin", "Cersei", "Jaime", "Tyrion"];
+    case "BA":
+      return ["Robert", "Stannis", "Renly"];
+    case "TA":
+      return ["Aerys", "Daenerys", "Viserys"];
+    default:
+      return []; // Empty array
+  }
+};
+
+    const houseSelector = document.getElementById('house')
+    // Houses
+    houses.forEach(house => {
+        const optionElement = document.createElement('option')
+        optionElement.value = house.code
+        optionElement.innerText = house.name
+        houseSelector.appendChild(optionElement)
+    })
+
+    houseSelector.addEventListener('change', e => {
+      const houseValue = e.target.value
+      const characterElement = document.getElementById('characters')
+
+      // remove children
+      while (characterElement.firstChild) {
+          characterElement.removeChild(characterElement.firstChild)
+        }
+      getCharacters(houseValue).forEach(char => {
+        const listElement = document.createElement('li')
+        listElement.innerHTML = char
+        characterElement.appendChild(listElement)
+      })
+    })
+
+    // Characters
+</script>
