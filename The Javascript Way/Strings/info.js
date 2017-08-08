@@ -14,7 +14,7 @@ const isPalindrome = word => {
 }
 
 
-const printWordStats = word => {
+module.exports.printWordStats = word => {
     console.log(`[${word}]`)
     console.log(`Word Length: ${word.length}`)
     process.stdout.write(`Lowercase values: `)
@@ -31,12 +31,7 @@ const printWordStats = word => {
     })
     process.stdout.write(`\nVowels in Word: `)
     Array.from(word).forEach(char => {
-        if(char.toLowerCase() === 'a'
-        || char.toLowerCase() === 'e'
-        || char.toLowerCase() === 'i'
-        || char.toLowerCase() === 'o'
-        || char.toLowerCase() === 'u'
-        || char.toLowerCase() === 'y')
+        if(['a','e','i','o','u'].indexOf(char.toLowerCase() > 0))
         {
             process.stdout.write(char)
         }
@@ -54,11 +49,3 @@ const printWordStats = word => {
 
     process.stdout.write('\n')
 }
-
-console.log("Please enter a word")
-
-process.argv.forEach( arg => {
-    if(process.argv.indexOf(arg) > 1) {
-        printWordStats(arg)
-    }
-})
